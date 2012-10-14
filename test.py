@@ -9,7 +9,9 @@ class concatMatcher():
     # returns the starting index of the match, -1 if no match
     def match(self, blob, pos, found=set(), orig_pos=0):
         m = self.regex.match( blob[ pos : pos+self.word_len ] )
-        if m:
+        if not m:
+            return -1
+        else:
             if m.group(0) in found:
                 return -1
             else:
@@ -19,8 +21,6 @@ class concatMatcher():
                 else:
                     return self.match(blob, pos+m.end()
                                      , found, orig_pos)
-        else:
-            return -1
 
 def ourfind(searchexp, blob):
     matcher = concatMatcher( searchexp.split(' ') )
