@@ -7,3 +7,9 @@ I think the prompt goes something like:
 So I made a simple solution that uses a regex of the form `"word1|word2|word3..."` to search for a phrase, a hashed set of found words, and a simple recursive function `match` to ensure that the matches are consecutive and unique.
 
 Just run `python test.py` and it'll pull in and run the testcases
+
+---
+
+Notes:
+
+I noticed recently that the solution for input04 is different for my matcher versus the example 'output' given. It would appear this discrepancy is due to my matcher being case sensitive and theirs not. Naturally, I consider my case-sensitive solution correct. :)
