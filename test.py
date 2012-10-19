@@ -7,28 +7,20 @@ class concatMatcher():
         self.word_len = len(words[0])
 
     # returns the starting index of the match, -1 if no match
-    def match(self, blob, pos, found=set(), orig_pos=0):
+    def match(self, blob, pos, found):
         m = self.regex.match( blob[ pos : pos+self.word_len ] )
-        if not m:
-            return -1
+        if not m or m.group(0) in found:
+            return False
         else:
-            if m.group(0) in found:
-                return -1
-            else:
-                found.add(m.group(0))
-                if len(found) == self.num_of_words:
-                    return orig_pos
-                else:
-                    return self.match(blob, pos+m.end()
-                                     , found, orig_pos)
+            found.add(m.group(0))
+            return True if len(found) == self.num_of_words \
+                        else self.match(blob, pos+m.end(), found)
 
 def ourfind(searchexp, blob):
     matcher = concatMatcher( searchexp.split(' ') )
     for i in range(len(blob)):
-        x = matcher.match(blob, i
-                   ,found=set(), orig_pos=i)
-        if x != -1: # a match!
-            return x
+        if matcher.match(blob, i, found=set() ):
+            return i
     return -1
 
 def outfile_dump(out_f):
