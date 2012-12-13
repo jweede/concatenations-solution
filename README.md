@@ -1,4 +1,4 @@
-You might run into this question in a coding interview. I finally took and afternoon to think it through and solve it properly.
+You might run into this question in a coding interview. I finally took an afternoon to think it through and solve it properly.
 
 I think the prompt goes something like: 
 
